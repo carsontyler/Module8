@@ -9,7 +9,7 @@ Person::Person(string fn, string ln, int an)
     lastName = ln;
     arNumber = an;
     //pResource = NULL; Prior to C++11
-    pResource = nullptr;    // c++11
+    //pResource = nullptr;    // c++11, don't need with shared/smart pointer
 }
 
 void Person::setArNumber(int arNumber) {Person::arNumber = arNumber;}
@@ -18,7 +18,10 @@ int Person::getArNumber() const {return arNumber;}
 /*!
  * Destructor. Clean Memeory
  */
-Person::~Person() {delete pResource;}
+Person::~Person()
+{
+    //delete pResource;     Don't need with smart pointers No deletes with smart
+}
 string Person::getName() const {return firstName + " " + lastName;}
 
 /*!
@@ -46,10 +49,13 @@ bool operator<(int n, Person &p) {return n < p.arNumber;}
 void Person::AddResource()
 {
     // Pointer to Resource
-    delete pResource;
-    pResource = new Resource("Resource for " + getName());
+    // delete pResource;        // Not needed with smart pointers
     // Resource r("Hello");
     // pResource = &r;          // only lives in this block
+    pResource.reset();
+    // pResource = new Resource("Resource for " + getName());       Not needed with smart pointers
+    pResource = make_shared<Resource>("Resource for " + getName());
+
 }
 
 const string &Person::getFirstName() const
@@ -62,11 +68,13 @@ void Person::setFirstName(const string &firstName)
     Person::firstName = firstName;
 }
 
-/*!
- * Copy Constructor
- * @param p Person ojbect to be copy
- */
-Person::Person(const Person &p)
+string Person::getResourceName() const
+{
+    return pResource->getName();                // -> Pointers to structures. Access to methods it points to. Pointer = ->
+}
+
+// Don't need with shared pointer
+/*Person::Person(const Person &p)
 {
     firstName = p.firstName;
     lastName = p.lastName;
@@ -86,4 +94,4 @@ Person &Person::operator=(const Person &p)
     pResource = new Resource(pResource->getName());
 
     return *this;                                           // Return yourself
-}
+}*/
