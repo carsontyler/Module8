@@ -22,16 +22,16 @@ public:
     //Person(const Person &p);                  // Don't need with shared pointer
     ~Person();
 
-    string getName() const;                     // Return first + last
-    int getArNumber() const;
+    string getName();                     // Return first + last
+    int getArNumber();
     void setArNumber(int arNumber);
-    const string &getFirstName() const;
+    const string &getFirstName();
     void setFirstName(const string &firstName);
-    string getResourceName() const;
+    string getResourceName();
 
     // Operator overload for < and >
-    bool operator < (Person &p) const;
-    bool operator < (int n) const;
+    bool operator < (Person &p);
+    bool operator < (int n);
     friend bool operator < (int n, Person &p);
     //Person& operator = (const Person &p);     // Don't need with shared pointer
     // These should work with int < Person, Person < int, int > Person, Person > int

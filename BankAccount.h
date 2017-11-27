@@ -12,6 +12,11 @@ private:
 public:
     BankAccount();
     ~BankAccount();
+
+    int getBalanceInPennies() const;
+    void setBalanceInPennies(int BalanceInPennies);
+
+    bool operator < (const BankAccount &ba);
 };
 
 

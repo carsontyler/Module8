@@ -13,7 +13,7 @@ Person::Person(string fn, string ln, int an)
 }
 
 void Person::setArNumber(int arNumber) {Person::arNumber = arNumber;}
-int Person::getArNumber() const {return arNumber;}
+int Person::getArNumber() {return arNumber;}
 
 /*!
  * Destructor. Clean Memeory
@@ -22,21 +22,21 @@ Person::~Person()
 {
     //delete pResource;     Don't need with smart pointers No deletes with smart
 }
-string Person::getName() const {return firstName + " " + lastName;}
+string Person::getName() {return firstName + " " + lastName;}
 
 /*!
  * Compare Person < person
  * @param p reference to Person
  * @return True or false
  */
-bool Person::operator<(Person &p) const {return arNumber < p.arNumber;}
+bool Person::operator<(Person &p) {return arNumber < p.arNumber;}
 
 /*!
  * Compare person < Int
  * @param n Integer number
  * @return true or false
  */
-bool Person::operator<(int n) const {return arNumber < n;}
+bool Person::operator<(int n) {return arNumber < n;}
 
 /*!
  * Compare integer < Person
@@ -58,7 +58,7 @@ void Person::AddResource()
 
 }
 
-const string &Person::getFirstName() const
+const string &Person::getFirstName()
 {
     return firstName;
 }
@@ -68,7 +68,7 @@ void Person::setFirstName(const string &firstName)
     Person::firstName = firstName;
 }
 
-string Person::getResourceName() const
+string Person::getResourceName()
 {
     return pResource->getName();                // -> Pointers to structures. Access to methods it points to. Pointer = ->
 }
