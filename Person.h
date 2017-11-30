@@ -18,6 +18,8 @@ private:
     shared_ptr<Resource> pResource;             // Declare a shared pointer
 
 public:
+    Person();
+
     Person(string fn, string ln, int an);
     //Person(const Person &p);                  // Don't need with shared pointer
     ~Person();
@@ -37,6 +39,8 @@ public:
     // These should work with int < Person, Person < int, int > Person, Person > int
 
     void AddResource();
+
+    friend ostream &operator<<(ostream &os, const Person &person);
 };
 bool operator < (int i, Person &p);
 

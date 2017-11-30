@@ -10,6 +10,7 @@ Person::Person(string fn, string ln, int an)
     arNumber = an;
     //pResource = NULL; Prior to C++11
     //pResource = nullptr;    // c++11, don't need with shared/smart pointer
+    //cout << "Constructing " << firstName << endl;
 }
 
 void Person::setArNumber(int arNumber) {Person::arNumber = arNumber;}
@@ -21,6 +22,7 @@ int Person::getArNumber() {return arNumber;}
 Person::~Person()
 {
     //delete pResource;     Don't need with smart pointers No deletes with smart
+    //cout << "Deleting " << firstName << endl;
 }
 string Person::getName() {return firstName + " " + lastName;}
 
@@ -72,6 +74,15 @@ string Person::getResourceName()
 {
     return pResource->getName();                // -> Pointers to structures. Access to methods it points to. Pointer = ->
 }
+
+ostream &operator<<(ostream &os, const Person &person)
+{
+    os << "firstName: " << person.firstName << " lastName: " << person.lastName << " arNumber: " << person.arNumber;
+    return os;
+}
+
+Person::Person()
+{}
 
 // Don't need with shared pointer
 /*Person::Person(const Person &p)
